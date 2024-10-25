@@ -10,6 +10,12 @@ const userSchema = new mongoose.Schema({
     unique: true,
     trim: true, // Removes extra whitespace
   },
+  email: {
+    type: String,
+    required: true,
+    unique: true,
+    trim: true, // Removes extra whitespace
+  },
   password: {
     type: String,
     required: true,

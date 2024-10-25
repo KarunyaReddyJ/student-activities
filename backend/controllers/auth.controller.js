@@ -1,16 +1,16 @@
-const bcrypt= require( "bcryptjs");
+const bcrypt= require( "bcrypt");
 const User =require( "../database/model/user.js");
 
 const generateTokenAndSetCookie = require("../utils/generateToken.js");
 
   const signup = async (req, res) => {
 	try {
-		const { username, password } = req.body;
+		const { username, password ,email} = req.body;
 
 	 
 
 		const user = await User.findOne({ username });
-
+console.log(username);
 		if (user) {
 			return res.status(400).json({ error: "Username already exists" });
 		}
@@ -25,6 +25,7 @@ const generateTokenAndSetCookie = require("../utils/generateToken.js");
 		const newUser = new User({
 		 
 			username,
+			email,
 			password: hashedPassword,
 		 
 		});

@@ -2,6 +2,7 @@ import Form from '../components/Form';
 import axios from 'axios'
 const SignUp = () => {
   const signupDetails = [
+    { label: 'UserId', name: 'username', type: 'text' },
     { label: 'Email', name: 'email', type: 'email' },
     { label: 'Password', name: 'password', type: 'password' },
     { label: 'Confirm Password', name: 'confirmPassword', type: 'password' },
