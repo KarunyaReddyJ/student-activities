@@ -3,18 +3,18 @@ const express = require('express');
 const app = express();
 const cors=require('cors')
 const PORT = process.env.PORT || 8080 
-
+const cookieparser=require('cookie-parser');
 //imports
-
-const AuthRouter=require('./routes/auth')
+const authRoutes =require( "/routes/auth.routes.js");
 
 //middlewares
 app.use(cors())
 app.use(express.json())
+app.use(cookieparser());
 app.use(express.urlencoded({extended:true}))
 
 
-app.use('/auth',AuthRouter)
+app.use("/api/auth", authRoutes);
 app.use('/', (req, res) => {
   res.send('server bro')
 });
