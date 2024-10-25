@@ -62,7 +62,6 @@ const generateTokenAndSetCookie = require("../utils/generateToken.js");
 		res.status(200).json({
 			_id: user._id,
 			username: user.username,
-			 
 		});
 	} catch (error) {
 		console.log("Error in login controller", error.message);

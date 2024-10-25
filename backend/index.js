@@ -5,7 +5,7 @@ const cors=require('cors')
 const PORT = process.env.PORT || 8080 
 const cookieparser=require('cookie-parser');
 //imports
-const authRoutes =require( "/routes/auth.routes.js");
+const authRoutes =require( "./routes/auth.routes.js");
 
 //middlewares
 app.use(cors())

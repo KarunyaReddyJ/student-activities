@@ -1,5 +1,5 @@
 const express =require( "express");
-const { login, logout, signup } =require( "../controllers/auth.controller.js");
+const { login, logout, signup } =require( "../controllers/auth.js");
 
 const router = express.Router();
 
