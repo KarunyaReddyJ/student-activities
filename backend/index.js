@@ -14,10 +14,7 @@ app.use(cookieparser());
 app.use(express.urlencoded({extended:true}));
 
 
-app.use("/auth",(req,res,next)=>{
-  console.log(req)
-  next()
-} ,authRoutes);
+app.use("/auth" ,authRoutes);
 app.use('/', (req, res) => {
   res.send('server bro')
 });

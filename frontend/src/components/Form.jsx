@@ -4,6 +4,7 @@ import { Box, Button, Card, CardContent,  Typography } from '@mui/material';
 import InputField from './InputField';
 import validate from '../utils/FormValidator';
 
+// eslint-disable-next-line react/prop-types
 const Form = ({ fields, onSubmit, title, buttonText }) => {
   const [formData, setFormData] = useState(() => 
     fields.reduce((acc, field) => ({ ...acc, [field.name]: '' }), {})
@@ -17,7 +18,8 @@ const Form = ({ fields, onSubmit, title, buttonText }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    let validationErrors = validate(formData.email,formData.password)
+    let validationErrors ={}
+    // validate(formData.email,formData.password)
     // Basic validation: Check for empty fields
     fields.forEach((field) => {
       if (!formData[field.name]) {
@@ -29,11 +31,15 @@ const Form = ({ fields, onSubmit, title, buttonText }) => {
     if (formData.confirmPassword && formData.password !== formData.confirmPassword) {
       validationErrors.confirmPassword = 'Passwords do not match';
     }
-
+    const er=validate(formData.email,formData.password)
+    if(!validationErrors.password && er.password) validationErrors.password=er.password
+    if(!validationErrors.email && er.email) validationErrors.email=er.email
     setErrors(validationErrors);
+    
 
     if (Object.keys(validationErrors).length === 0) {
-      onSubmit(formData); // Trigger the submit callback
+      onSubmit(formData); 
+     
     }
   };
 
