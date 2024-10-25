@@ -1,5 +1,6 @@
 import Form from '../components/Form';
 import axios from 'axios'
+
 const Login = () => {
   const loginFields = [
     { label: 'Email', name: 'email', type: 'email' },
@@ -8,7 +9,7 @@ const Login = () => {
 
   const handleLogin =async (formData) => {
     try {
-      const response = await axios.post(`${import.meta.env.VITE_BACKEND_ROOT}/auth/login`, formData);
+      const response = await axios.post(`localhost:5000/auth/login`, formData);
       console.log('Login Success:', response);
     } catch (error) {
       console.error('Login Failed:', error.response ? error.response.data : error.message);

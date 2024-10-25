@@ -2,7 +2,7 @@
 import  { useState } from 'react';
 import { Box, Button, Card, CardContent,  Typography } from '@mui/material';
 import InputField from './InputField';
-
+import validate from '../utils/FormValidator';
 
 const Form = ({ fields, onSubmit, title, buttonText }) => {
   const [formData, setFormData] = useState(() => 
@@ -17,8 +17,7 @@ const Form = ({ fields, onSubmit, title, buttonText }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    let validationErrors = {};
-
+    let validationErrors = validate(formData.email,formData.password)
     // Basic validation: Check for empty fields
     fields.forEach((field) => {
       if (!formData[field.name]) {

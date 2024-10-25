@@ -1,16 +1,16 @@
-const bcrypt= require( "bcrypt");
-const User =require( "../database/model/user.js");
+const bcrypt = require("bcrypt");
+const User = require("../database/model/user.js");
 
 const generateTokenAndSetCookie = require("../utils/generateToken.js");
 
-  const signup = async (req, res) => {
+const signup = async (req, res) => {
 	try {
-		const { username, password ,email} = req.body;
+		const { username, password, email } = req.body;
 
-	 
 
+
+		console.log(username);
 		const user = await User.findOne({ username });
-console.log(username);
 		if (user) {
 			return res.status(400).json({ error: "Username already exists" });
 		}
@@ -21,13 +21,13 @@ console.log(username);
 
 		// https://avatar-placeholder.iran.liara.run/
 
-	 
+
 		const newUser = new User({
-		 
+
 			username,
 			email,
 			password: hashedPassword,
-		 
+
 		});
 
 		if (newUser) {
@@ -48,7 +48,7 @@ console.log(username);
 	}
 };
 
-  const login = async (req, res) => {
+const login = async (req, res) => {
 	try {
 		const { username, password } = req.body;
 		const user = await User.findOne({ username });
@@ -70,7 +70,7 @@ console.log(username);
 	}
 };
 
-  const logout = (req, res) => {
+const logout = (req, res) => {
 	try {
 		res.cookie("jwt", "", { maxAge: 0 });
 		res.status(200).json({ message: "Logged out successfully" });
@@ -79,4 +79,4 @@ console.log(username);
 		res.status(500).json({ error: "Internal Server Error" });
 	}
 };
-module.exports={signup,login,logout};
+module.exports = { signup, login, logout };
